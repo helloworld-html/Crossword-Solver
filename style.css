@@ -78,6 +78,8 @@ header > button {
 }
 
 main {
+  display: none;
+  margin-top: 100px;
   position: relative;
 }
 
