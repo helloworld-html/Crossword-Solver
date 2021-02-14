@@ -19,40 +19,34 @@
     <main>
       <h2> Write the letters in the table </h2>
       <table contenteditable="true">
-        <tr>
-         <td></td> <td></td>
-         <td></td> <td></td>
-         <td></td> <td></td>
-        </tr>
-        <tr>
-         <td></td> <td></td>
-         <td></td> <td></td>
-         <td></td> <td></td>
-        </tr>
-        <tr>
-         <td></td> <td></td>
-         <td></td> <td></td>
-         <td></td> <td></td>
-        </tr>
-        <tr>
-         <td></td> <td></td>
-         <td></td> <td></td>
-         <td></td> <td></td>
-        </tr>
-        <tr>
-         <td></td> <td></td>
-         <td></td> <td></td>
-         <td></td> <td></td>
-        </tr>
-        <tr>
-         <td></td> <td></td>
-         <td></td> <td></td>
-         <td></td> <td></td>
-        </tr>
+        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
+        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
+        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
+        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
+        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
       </table>
-      <label> Write here the word(s) you want to find in the crossword </label>
+
+      <button onclick="document.querySelector('section').style.display='block'"> &#128736; Settings </button>
+
+      <section>
+        <h3> Settings: </h3>
+        <div style="display:inline-flex">
+          <span style="margin-right:10px">
+            <label style="font-size:22px"> Columns </label>
+            <input type="number" max="50" min="5" value="5">
+          </span>
+          <span style="margin-left:10px">
+            <label style="font-size:22px"> Rows </label>
+            <input type="number" max="50" min="5" value="5">
+          </span>
+        </div>
+        <button id="submitSettings" onclick="document.querySelector('section').style.display = 'none'"> Submit </button>
+      </section>
+
+      <label> Write here the word(s) you want to find </label>
       <input type="text" placeholder="word" maxlength="15">
-      <button> Find Words &#x1F50E; </button><br>
+      <button id="search"> Find Words &#x1F50E; </button><br>
+
       <a href="https://github.com/helloworld-html/Crossword-Solver" target="_blank" rel="noopener"> This project is hosted on Github </a>
     </main>
 
