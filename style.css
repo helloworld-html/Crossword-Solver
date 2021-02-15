@@ -99,18 +99,16 @@ table {
   color: white;
   margin-right: auto;
   margin-left: auto;
+  cursor: cell;
   margin-bottom: 30px;
   table-layout: fixed;
-  font-size: 40px;
   border-collapse: collapse;
   width: 70%;
 }
 
 td {
   cursor: cell;
-  text-align: center;
   border: 3px ridge black;
-  padding: 5px;
 }
 
 tr:nth-child(even) > td:nth-child(odd) {
@@ -119,6 +117,18 @@ tr:nth-child(even) > td:nth-child(odd) {
 
 tr:nth-child(odd) > td:nth-child(even) {
   background-color: #634d36;
+}
+
+td > input {
+  background-color: rgba(255, 255, 255, 0);
+  cursor: cell;
+  text-transform: uppercase;
+  border: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  width: 9vw;
+  font-size: 200%;
 }
 
 section {
@@ -179,7 +189,7 @@ main > label {
   text-align: center;
 }
 
-main > input {
+#inputSearch {
   display: block;
   width: 300px;
   margin-left: auto;
@@ -194,7 +204,7 @@ main > input {
   border-radius: 8px;
 }
 
-main > input::placeholder { font-style: italic }
+input::placeholder { font-style: italic }
 
 main > button {
   display: block;

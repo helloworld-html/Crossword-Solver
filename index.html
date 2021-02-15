@@ -18,12 +18,42 @@
 
     <main>
       <h2> Write the letters in the table </h2>
-      <table contenteditable="true">
-        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
-        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
-        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
-        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
-        <tr> <td></td><td></td><td></td><td></td><td></td> </tr>
+      <table>
+        <tr>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+        </tr>
+        <tr>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+        </tr>
+        <tr>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+        </tr>
+        <tr>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+        </tr>
+        <tr>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+          <td> <input type="text"> </td>
+        </tr>
       </table>
 
       <button onclick="document.querySelector('section').style.display='block'"> &#128736; Settings </button>
@@ -44,7 +74,7 @@
       </section>
 
       <label> Write here the word(s) you want to find </label>
-      <input type="text" placeholder="word" maxlength="15">
+      <input type="text" id="inputSearch" placeholder="word" maxlength="15">
       <button id="search"> Find Words &#x1F50E; </button><br>
 
       <a href="https://github.com/helloworld-html/Crossword-Solver" target="_blank" rel="noopener"> This project is hosted on Github </a>
