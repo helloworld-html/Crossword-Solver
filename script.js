@@ -10,6 +10,13 @@ document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('main').style.display = 'block'
 })
 
+let countId = 1;
 for (let x of cells) {
   x.maxLength = 1;
+  x.id = 'input' + countId++;
+  x.type = 'text';
+  x.onkeyup = function() {
+    if (this.value != '') { alert("hi") }
+  }
+  console.log(x)
 }
