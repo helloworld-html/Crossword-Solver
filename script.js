@@ -10,13 +10,13 @@ document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('main').style.display = 'block'
 })
 
-let countId = 1;
 for (let x of cells) {
+  const index = [...cells].indexOf(x);
   x.maxLength = 1;
-  x.id = 'input' + countId++;
   x.type = 'text';
   x.onkeyup = function() {
-    if (this.value != '') { alert("hi") }
+    if (this.value != '' && cells[index + 1]) {
+      cells[index + 1].focus();
+    }
   }
-  console.log(x)
 }
