@@ -70,7 +70,11 @@
             <input type="number" max="50" min="5" value="5">
           </span>
         </div>
-        <button id="submitSettings" onclick="document.querySelector('section').style.display = 'none'"> Submit </button>
+        <div style="display:block; margin-top:20px">
+          <b style="font-size:22px"> Reset table </b>
+          <input id="reset" style="cursor:pointer" type="checkbox">
+        </div>
+        <button id="submitSettings" onclick="ApplyTableChanges()"> Submit </button>
       </section>
 
       <label> Write here the word(s) you want to find </label>
