@@ -108,7 +108,7 @@ table {
 
 td {
   cursor: cell;
-  border: 3px ridge black;
+  border: 3px black;
 }
 
 tr:nth-child(even) > td:nth-child(odd) {
@@ -212,6 +212,7 @@ main > button {
   margin-right: auto;
   margin-left: auto;
   text-align: center;
+  background-color: white;
   margin-bottom: 100px;
   cursor: pointer;
   border-radius: 8px;
