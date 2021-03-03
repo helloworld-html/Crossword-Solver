@@ -108,7 +108,7 @@ table {
 
 td {
   cursor: cell;
-  border: 3px black;
+  border: 3px solid black;
 }
 
 tr:nth-child(even) > td:nth-child(odd) {

@@ -2,6 +2,7 @@
 
 let table = document.querySelector('table');
 let cells = document.querySelectorAll('td > input');
+let input = document.getElementById('inputSearch');
 
 document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('header').style.animation = 'slide 1s forwards';
@@ -10,20 +11,17 @@ document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('main').style.display = 'block'
 })
 
-function AccessTableInput() {
-  for (let x of cells) {
-    const index = [...cells].indexOf(x);
-    x.maxLength = 1;
-    x.type = 'text';
-    x.onkeyup = function() {
-      if (this.value != '' && cells[index + 1]) {
-        cells[index + 1].focus();
-      }
+for (let x of cells) {
+  const index = [...cells].indexOf(x);
+  x.maxLength = 1;
+  x.type = 'text';
+  x.onkeyup = function() {
+    if (this.value != '' && cells[index + 1]) {
+      cells[index + 1].focus();
     }
   }
 }
 
-AccessTableInput()
 
 function ApplyTableChanges() {
   let checkbox = document.getElementById('reset');
@@ -32,4 +30,15 @@ function ApplyTableChanges() {
   }
   checkbox.checked = false;
   document.querySelector('section').style.display = 'none';
+}
+
+input.addEventListener('keypress', function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById('search').click()
+  }
+})
+
+function SubmitSearch() {
+  alert('test')
 }
