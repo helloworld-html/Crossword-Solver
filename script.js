@@ -10,14 +10,24 @@ document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('main').style.display = 'block'
 })
 
-function GenerateTable(numberColumns, numberRows) {
-  for (let column = 0; column < numberColumns; column++) {
+
+function GenerateTable(x, y) {
+  for (let column = 0; column < x; column++) {
     let newRow = table.insertRow();
-    for (let row = 0; row < numberRows; row++) {
-      let inputCell = document.createElement('INPUT');
-      inputCell.maxLength = 1;
-      inputCell.type = 'text';
-      newRow.insertCell().appendChild(inputCell);
+    for (let row = 0; row < y; row++) {
+      let input = document.createElement('INPUT');
+      newRow.insertCell().appendChild(input);
+    }
+  }
+  let cells = document.querySelectorAll('td > input');
+  for (let x of cells) {
+    x.maxLength = 1;
+    x.type = 'text';
+    const index = [...cells].indexOf(x);
+    x.onkeyup = function() {
+      if (this.value != '') {
+        cells[index + 1].focus();
+      }
     }
   }
 }
@@ -25,6 +35,10 @@ function GenerateTable(numberColumns, numberRows) {
 GenerateTable(5, 5)
 
 function ApplyTableChanges() {
+  let confirmChange = confirm("This will automatically delete all table values");
+  if (confirmChange == false) {
+    return false
+  }
   let valueColumns = document.getElementById('columns').value;
   let valueRows = document.getElementById('rows').value;
   if (valueColumns < 5 || valueColumns > 20 || valueRows < 5 || valueRows > 20) {
