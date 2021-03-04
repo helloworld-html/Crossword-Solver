@@ -1,7 +1,6 @@
 'use strict'
 
 let table = document.querySelector('table');
-let cells = document.querySelectorAll('td > input');
 let input = document.getElementById('inputSearch');
 
 document.querySelector('header > button').addEventListener('click', function() {
@@ -26,9 +25,13 @@ function GenerateTable(numberColumns, numberRows) {
 GenerateTable(5, 5)
 
 function ApplyTableChanges() {
-  table.innerHTML = '';
   let valueColumns = document.getElementById('columns').value;
   let valueRows = document.getElementById('rows').value;
+  if (valueColumns < 5 || valueColumns > 20 || valueRows < 5 || valueRows > 20) {
+    alert("Please choose a value between 5 and 20");
+    return false
+  }
+  table.innerHTML = '';
   GenerateTable(valueColumns, valueRows);
   document.querySelector('section').style.display = 'none';
 }
