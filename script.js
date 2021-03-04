@@ -11,26 +11,28 @@ document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('main').style.display = 'block'
 })
 
-for (let x of cells) {
-  const index = [...cells].indexOf(x);
-  x.maxLength = 1;
-  x.type = 'text';
-  x.onkeyup = function() {
-    if (this.value != '' && cells[index + 1]) {
-      cells[index + 1].focus();
+function GenerateTable(numberColumns, numberRows) {
+  for (let column = 0; column < numberColumns; column++) {
+    let newRow = table.insertRow();
+    for (let row = 0; row < numberRows; row++) {
+      let inputCell = document.createElement('INPUT');
+      inputCell.maxLength = 1;
+      inputCell.type = 'text';
+      newRow.insertCell().appendChild(inputCell);
     }
   }
 }
 
+GenerateTable(5, 5)
 
 function ApplyTableChanges() {
-  let checkbox = document.getElementById('reset');
-  if (document.getElementById('reset').checked) {
-    for (let x of cells) { x.value = '' }
-  }
-  checkbox.checked = false;
+  table.innerHTML = '';
+  let valueColumns = document.getElementById('columns').value;
+  let valueRows = document.getElementById('rows').value;
+  GenerateTable(valueColumns, valueRows);
   document.querySelector('section').style.display = 'none';
 }
+
 
 input.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {

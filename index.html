@@ -18,43 +18,7 @@
 
     <main>
       <h2> Write the letters in the table </h2>
-      <table>
-        <tr>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-        </tr>
-        <tr>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-        </tr>
-        <tr>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-        </tr>
-        <tr>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-        </tr>
-        <tr>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-          <td> <input> </td>
-        </tr>
-      </table>
+      <table> </table>
 
       <button onclick="document.querySelector('section').style.display='block'"> &#128736; Settings </button>
 
@@ -63,16 +27,12 @@
         <div style="display:inline-flex">
           <span style="margin-right:10px">
             <label style="font-size:22px"> Columns </label>
-            <input type="number" max="50" min="5" value="5">
+            <input id="columns" type="number" max="50" min="5" value="5">
           </span>
           <span style="margin-left:10px">
             <label style="font-size:22px"> Rows </label>
-            <input type="number" max="50" min="5" value="5">
+            <input id="rows" type="number" max="50" min="5" value="5">
           </span>
-        </div>
-        <div style="display:block;margin-top:20px">
-          <b style="font-size:22px"> Reset table </b>
-          <input id="reset" style="cursor:pointer" type="checkbox">
         </div>
         <button id="submitSettings" onclick="ApplyTableChanges()"> Submit </button>
       </section>
