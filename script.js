@@ -1,7 +1,7 @@
 'use strict'
 
 let table = document.querySelector('table');
-let input = document.getElementById('inputSearch');
+let inputSearch = document.getElementById('inputSearch');
 
 document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('header').style.animation = 'slide 1s forwards';
@@ -23,9 +23,10 @@ function GenerateTable(x, y) {
   for (let x of cells) {
     x.maxLength = 1;
     x.type = 'text';
+    x.value = "hi";
     const index = [...cells].indexOf(x);
-    x.onkeyup = function() {
-      if (this.value != '') {
+    x.onkeydown = function() {
+      if (this.value != '' && cells[index + 1]) {
         cells[index + 1].focus();
       }
     }
@@ -35,14 +36,15 @@ function GenerateTable(x, y) {
 GenerateTable(5, 5)
 
 function ApplyTableChanges() {
-  let confirmChange = confirm("This will automatically delete all table values");
-  if (confirmChange == false) {
-    return false
-  }
   let valueColumns = document.getElementById('columns').value;
   let valueRows = document.getElementById('rows').value;
-  if (valueColumns < 5 || valueColumns > 20 || valueRows < 5 || valueRows > 20) {
+  if (valueColumns < 5 || valueRows < 5 || valueRows > 25) {
     alert("Please choose a value between 5 and 20");
+    return false
+  }
+  let confirmChange = confirm("This will automatically delete all table values");
+  if (confirmChange == false) {
+    document.querySelector('section').style.display = 'none';
     return false
   }
   table.innerHTML = '';
@@ -51,7 +53,7 @@ function ApplyTableChanges() {
 }
 
 
-input.addEventListener('keypress', function(event) {
+inputSearch.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
     document.getElementById('search').click()
@@ -59,5 +61,10 @@ input.addEventListener('keypress', function(event) {
 })
 
 function SubmitSearch() {
-  alert('test')
+  for (const row of Object.values(table.rows)) {
+    for (const cell in Object.values(row.cells)) {
+      const y = cell.firstChild.value;
+      console.log(y)
+    }
+  }
 }
