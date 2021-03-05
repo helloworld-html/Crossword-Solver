@@ -23,7 +23,6 @@ function GenerateTable(x, y) {
   for (let x of cells) {
     x.maxLength = 1;
     x.type = 'text';
-    x.value = "hi";
     const index = [...cells].indexOf(x);
     x.onkeydown = function() {
       if (this.value != '' && cells[index + 1]) {
@@ -67,4 +66,4 @@ function SubmitSearch() {
       console.log(y)
     }
   }
-}
+} //YOUR CODE MATTHAIS
