@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Crossword Solver </title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="An online crossword solver"/>
+    <meta name="author" content="Thomas Giudici"/>
+    <link rel="icon" type="image/png" href="Images/favicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  </head>
+
+  <body>
+    <table id="tabela">
+      <tr>
+          <td><input type="text" value="1"/></td>
+          <td><input type="text" value="12"/></td>
+          <td><input type="text" value="13"/></td>
+          <td><input type="text" value="14"/></td>
+          <td><input type="text" value="34"/></td>
+      </tr>
+      <tr>
+          <td><input type="text" value="21"/></td>
+          <td><input type="text" value="22"/></td>
+          <td><input type="text" value="23"/></td>
+          <td><input type="text" value="24"/></td>
+          <td><input type="text" value="34"/></td>
+      </tr>
+      <tr>
+          <td><input type="text" value="31"/></td>
+          <td><input type="text" value="32"/></td>
+          <td><input type="text" value="33"/></td>
+          <td><input type="text" value="34"/></td>
+          <td><input type="text" value="34"/></td>
+      </tr>
+      <tr>
+        <td><input type="text" value="31"/></td>
+        <td><input type="text" value="32"/></td>
+        <td><input type="text" value="33"/></td>
+        <td><input type="text" value="34"/></td>
+        <td><input type="text" value="34"/></td>
+    </tr>
+  </table>
+
+    <script>
+      var table = document.getElementById("tabela");
+
+      function SubmitSearch() {
+  const array = [];
+  for (const row of table.rows) {
+    for (const cell of row.cells) {
+      const valueCell = cell.firstChild.value;
+      array.push(valueCell)
+    }
+  }
+  let values = chunkArray(array, table.rows[0].cells.length);
+  console.log(values);
+}
+
+function chunkArray(x, chunk) {
+  const array = [];
+  while (x.length) {
+    array.push(x.splice(0, chunk));
+  }
+  return array;
+}
+
+SubmitSearch()
+
+    </script>
+
+  </body>
+</html>
