@@ -79,7 +79,7 @@ function SubmitSearch() {
   }
   const values = chunkArray(array, table.rows[0].cells.length);
   const xValues = values.map(x => x.join(""));
-  if (array.filter(element => element.includes(input.value))) {
+  if (xValues.find(element => element.includes(input.value))) {
     alert('yes!')
   }
 
