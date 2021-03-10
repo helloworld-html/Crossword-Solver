@@ -1,8 +1,5 @@
 'use strict'
 
-const table = document.querySelector('table');
-const inputSearch = document.getElementById('inputSearch');
-
 document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('header').style.animation = 'slide 1s forwards';
   this.style.display = 'none';
@@ -10,6 +7,7 @@ document.querySelector('header > button').addEventListener('click', function() {
   document.querySelector('main').style.display = 'block'
 })
 
+const table = document.querySelector('table');
 
 function GenerateTable(x, y) {
   for (let column = 0; column < x; column++) {
@@ -23,7 +21,7 @@ function GenerateTable(x, y) {
     x.maxLength = 1;
     x.type = 'text';
     const index = [...cells].indexOf(x);
-    x.onkeydown = function() {
+    x.onkeyup = function() {
       if (this.value != '' && cells[index + 1]) {
         cells[index + 1].focus();
       }
@@ -32,6 +30,13 @@ function GenerateTable(x, y) {
 }
 
 GenerateTable(5, 5)
+
+document.querySelector('section').addEventListener('keypress', function(event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById('submitSettings').click()
+  }
+})
 
 function ApplyTableChanges() {
   const valueColumns = document.getElementById('columns').value;
@@ -51,7 +56,9 @@ function ApplyTableChanges() {
 }
 
 
-inputSearch.addEventListener('keypress', function(event) {
+const input = document.getElementById('inputSearch');
+
+input.addEventListener('keypress', function(event) {
   if (event.keyCode === 13) {
     event.preventDefault();
     document.getElementById('search').click()
@@ -59,6 +66,10 @@ inputSearch.addEventListener('keypress', function(event) {
 })
 
 function SubmitSearch() {
+  if (input.value == "" || /^\s+$/.test(input.value)) {
+    alert('Please enter a value');
+    return false
+  }
   const array = [];
   for (const row of table.rows) {
     for (const cell of row.cells) {
@@ -66,8 +77,13 @@ function SubmitSearch() {
       array.push(valueCell)
     }
   }
-  let values = chunkArray(array, table.rows[0].cells.length);
-  console.log(values);
+  const values = chunkArray(array, table.rows[0].cells.length);
+  const xValues = values.map(x => x.join(""));
+  if (array.filter(element => element.includes(input.value))) {
+    alert('yes!')
+  }
+
+  console.log(xValues);
 }
 
 function chunkArray(x, chunk) {

@@ -170,12 +170,15 @@ section > button {
   font-size: 17px;
   padding: 8px 16px 8px 16px;
   border: none;
+  background-color: white;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
   border-radius: 8px;
   cursor: pointer;
 }
+
+section > button:hover { filter: drop-shadow(0px 0px 0px white) }
 
 main > label {
   position: relative;
@@ -220,7 +223,7 @@ main > button {
 
 main button:hover { transform: translate(0px, 1px) }
 
-main > input:hover, button:hover {
+input:hover, button:hover {
   filter: drop-shadow(0px 0px 10px white)
 }
 
