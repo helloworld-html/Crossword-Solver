@@ -73,17 +73,19 @@ function SubmitSearch() {
   const array = [];
   for (const row of table.rows) {
     for (const cell of row.cells) {
-      const valueCell = cell.firstChild.value;
+      const valueCell = cell.firstChild.value.toLowerCase();
       array.push(valueCell)
     }
   }
   const values = chunkArray(array, table.rows[0].cells.length);
-  const xValues = values.map(x => x.join(""));
-  if (xValues.find(element => element.includes(input.value))) {
-    alert('yes!')
+  const xValues = values.map(x => x.join(''));
+  if (xValues.find(element => element.includes(input.value.toLowerCase()))) {
+    document.querySelector('p').innerHTML = 'Word found!'
   }
-
-  console.log(xValues);
+  else {
+    document.querySelector('p').innerHTML = 'Word not found'
+  }
+  console.log(xValues)
 }
 
 function chunkArray(x, chunk) {
