@@ -234,7 +234,7 @@ main > button {
 main button:hover { transform: translate(0px, 1px) }
 
 input:hover, button:hover {
-  filter: drop-shadow(0px 0px 10px white)
+  filter: drop-shadow(0px 0px 20px white)
 }
 
 main > p {

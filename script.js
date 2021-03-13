@@ -70,28 +70,41 @@ function SubmitSearch() {
     alert('Please enter a value');
     return false
   }
-  const array = [];
+
+  //Find Rows
+  const arrayX = [];
   for (const row of table.rows) {
     for (const cell of row.cells) {
       const valueCell = cell.firstChild.value.toLowerCase();
-      array.push(valueCell)
+      arrayX.push(valueCell)
     }
   }
-  const values = chunkArray(array, table.rows[0].cells.length);
-  const xValues = values.map(x => x.join(''));
-  if (xValues.find(element => element.includes(input.value.toLowerCase()))) {
-    document.querySelector('p').innerHTML = 'Word found!'
+  const values = chunkArray(arrayX, table.rows[0].cells.length);
+  const valuesX = values.map(x => x.join(''));
+  const foundX = valuesX.find(element => element.includes(input.value.toLowerCase()));
+
+  //Find Columns
+  let arrayY = [];
+  for (let a = 0; a < values.length; a++) {
+    for (let b in values) {
+      arrayY.push(values[b][a]);
+    }
   }
-  else {
+  let valuesY = chunkArray(arrayY, table.rows[0].cells.length);
+  valuesY = valuesY.map(x => x.join(''));
+  const foundY = valuesY.find(element => element.includes(input.value.toLowerCase()));
+
+  if (foundX || foundY) {
+    document.querySelector('p').innerHTML = 'Word found!'
+  } else {
     document.querySelector('p').innerHTML = 'Word not found'
   }
-  console.log(xValues)
 }
 
 function chunkArray(x, chunk) {
-  const array = [];
+  const a = [];
   while (x.length) {
-    array.push(x.splice(0, chunk));
+    a.push(x.splice(0, chunk));
   }
-  return array;
+  return a;
 }
