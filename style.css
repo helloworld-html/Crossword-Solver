@@ -246,7 +246,7 @@ main > p {
   font-size: 25px;
 }
 
-main > a {
+#link1 {
   text-decoration: none;
   color: white;
   position: absolute;
@@ -254,7 +254,16 @@ main > a {
   left: 3px;
 }
 
-main > a:hover { color: black }
+#link2 {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+}
+
+#link1:hover, #link2:hover { color: black }
 
 @keyframes main {
   from { margin-left: 100% }

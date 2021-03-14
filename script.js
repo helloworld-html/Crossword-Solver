@@ -16,7 +16,7 @@ function GenerateTable(x, y) {
       newRow.insertCell().appendChild(document.createElement('INPUT'));
     }
   }
-  const cells = document.querySelectorAll('td > input');
+  let cells = document.querySelectorAll('td > input');
   for (const x of cells) {
     x.maxLength = 1;
     x.type = 'text';
@@ -42,11 +42,11 @@ function ApplyTableChanges() {
   const valueColumns = document.getElementById('columns').value;
   const valueRows = document.getElementById('rows').value;
   if (valueColumns < 5 || valueRows < 5 || valueRows > 25) {
-    alert("Please choose a value between 5 and 20");
+    alert('Please choose a value between 5 and 20');
     return false
   }
-  const confirmChange = confirm("This will automatically delete all table values");
-  if (confirmChange == false) {
+  const confirmChange = confirm('This will automatically delete all table values');
+  if (confirmChange === false) {
     document.querySelector('section').style.display = 'none';
     return false
   }
@@ -66,8 +66,9 @@ input.addEventListener('keypress', function(event) {
 })
 
 function SubmitSearch() {
-  if (input.value == "" || /^\s+$/.test(input.value)) {
-    alert('Please enter a value');
+  console.clear();
+  if (input.value === '' || /^\s+$/.test(input.value)) {
+    document.querySelector('p').textContent = 'Please enter a value'
     return false
   }
 
@@ -81,10 +82,10 @@ function SubmitSearch() {
   }
   const values = chunkArray(arrayX, table.rows[0].cells.length);
   const valuesX = values.map(x => x.join(''));
-  const foundX = valuesX.find(element => element.includes(input.value.toLowerCase()));
+  const foundX = valuesX.find(e => e.includes(input.value.toLowerCase()));
 
   //Find Columns
-  let arrayY = [];
+  const arrayY = [];
   for (let a = 0; a < values.length; a++) {
     for (let b in values) {
       arrayY.push(values[b][a]);
@@ -92,19 +93,25 @@ function SubmitSearch() {
   }
   let valuesY = chunkArray(arrayY, table.rows[0].cells.length);
   valuesY = valuesY.map(x => x.join(''));
-  const foundY = valuesY.find(element => element.includes(input.value.toLowerCase()));
+  const foundY = valuesY.find(e => e.includes(input.value.toLowerCase()));
+
+  console.groupCollapsed(`%cTable Values`, 'font-weight:bold;font-size:16px');
+  console.log(`%cRows values: ${JSON.stringify(valuesX)}`, 'color:coral;font-weight:bold;font-size:15px');
+  console.log(`%cColumns values: ${JSON.stringify(valuesY)}`, 'color:#00bfff;font-weight:bold;font-size:15px');
+  console.groupEnd();
 
   if (foundX || foundY) {
-    document.querySelector('p').innerHTML = 'Word found!'
+    document.querySelector('p').textContent = 'Word found!'
+    const storage = localStorage.setItem(1, values);
   } else {
-    document.querySelector('p').innerHTML = 'Word not found'
+    document.querySelector('p').textContent = 'Word not found'
   }
 }
 
 function chunkArray(x, chunk) {
-  const a = [];
+  const array = [];
   while (x.length) {
-    a.push(x.splice(0, chunk));
+    array.push(x.splice(0, chunk));
   }
-  return a;
+  return array;
 }
