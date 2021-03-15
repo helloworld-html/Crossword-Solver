@@ -96,12 +96,15 @@ function SubmitSearch() {
   const foundY = valuesY.find(e => e.includes(input.value.toLowerCase()));
 
   console.groupCollapsed(`%cTable Values`, 'font-weight:bold;font-size:16px');
+  console.log(`%cAll values: ${JSON.stringify(values)}`, 'color:#00e673;font-weight:bold;font-size:15px');
   console.log(`%cRows values: ${JSON.stringify(valuesX)}`, 'color:coral;font-weight:bold;font-size:15px');
   console.log(`%cColumns values: ${JSON.stringify(valuesY)}`, 'color:#00bfff;font-weight:bold;font-size:15px');
   console.groupEnd();
 
   if (foundX || foundY) {
-    document.querySelector('p').textContent = 'Word found!'
+    //console.log('X  ' + foundX);
+    //console.log('Y  ' + foundY);
+    document.querySelector('p').textContent = 'Word found!';
     const storage = localStorage.setItem(1, values);
   } else {
     document.querySelector('p').textContent = 'Word not found'
