@@ -143,6 +143,10 @@ td > input {
   font-size: 2vw;
 }
 
+td.found {
+  background-color: #FFFF00 !important;
+}
+
 section {
   z-index: 3;
   text-align: center;

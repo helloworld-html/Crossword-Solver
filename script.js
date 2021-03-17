@@ -67,6 +67,7 @@ input.addEventListener('keypress', function(event) {
 
 function SubmitSearch() {
   console.clear();
+  const searchWord = input.value.toLowerCase();
   if (input.value === '' || /^\s+$/.test(input.value)) {
     document.querySelector('p').textContent = 'Please enter a value'
     return false
@@ -74,15 +75,17 @@ function SubmitSearch() {
 
   //Find Rows
   const arrayX = [];
+  [...document.querySelectorAll('td.found')].forEach(cell => cell.classList.remove('found'));
   for (const row of table.rows) {
     for (const cell of row.cells) {
       const valueCell = cell.firstChild.value.toLowerCase();
       arrayX.push(valueCell)
     }
   }
+
   const values = chunkArray(arrayX, table.rows[0].cells.length);
   const valuesX = values.map(x => x.join(''));
-  const foundX = valuesX.find(e => e.includes(input.value.toLowerCase()));
+  let foundX = valuesX.findIndex(e => e.includes(searchWord));
 
   //Find Columns
   const arrayY = [];
@@ -93,7 +96,11 @@ function SubmitSearch() {
   }
   let valuesY = chunkArray(arrayY, table.rows[0].cells.length);
   valuesY = valuesY.map(x => x.join(''));
-  const foundY = valuesY.find(e => e.includes(input.value.toLowerCase()));
+
+  let foundY = -1;
+  if (foundX < 0) {
+    foundY = valuesY.findIndex(e => e.includes(searchWord))
+  }
 
   console.groupCollapsed(`%cTable Values`, 'font-weight:bold;font-size:16px');
   console.log(`%cAll values: ${JSON.stringify(values)}`, 'color:#00e673;font-weight:bold;font-size:15px');
@@ -101,11 +108,16 @@ function SubmitSearch() {
   console.log(`%cColumns values: ${JSON.stringify(valuesY)}`, 'color:#00bfff;font-weight:bold;font-size:15px');
   console.groupEnd();
 
-  if (foundX || foundY) {
-    //console.log('X  ' + foundX);
-    //console.log('Y  ' + foundY);
-    document.querySelector('p').textContent = 'Word found!';
-    const storage = localStorage.setItem(1, values);
+  if (foundY > -1 || -1 < foundX) {
+    document.querySelector('p').textContent = 'Word found'
+    if (foundX < 0) {
+      foundX = valuesY[foundY].search(searchWord);
+      [...table.rows].slice(foundX, foundX + searchWord.length).forEach(row => row.children[foundY].classList.add('found'));
+    }
+    if (foundY < 0) {
+      foundY = valuesX[foundX].search(searchWord);
+      [...table.rows[foundX].children].slice(foundY, foundY + searchWord.length).forEach(col => col.classList.add('found'));
+    }
   } else {
     document.querySelector('p').textContent = 'Word not found'
   }
